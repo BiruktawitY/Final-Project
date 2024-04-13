@@ -18,3 +18,8 @@ run;
 proc freq data=learn.merge_clean;
   tables RIAGENDR INDFMPIR;
 run;
+
+proc reg data=learn.merge_clean plots(maxpoints=9000);
+  model DR2TPROT DR2TCARB DR2TSUGR DR2TTFAT DR2TCHOL = INDFMPIR;
+run;
+
