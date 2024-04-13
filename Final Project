@@ -9,3 +9,12 @@ libname learn '/home/u63735964/my_programs';
 data learn.merge_c;
 set learn.merge;
 if cmiss(of _all_) ~= 0 then delete;
+
+proc means data=learn.merge_clean n mean median std min max;
+  var DR2TPROT DR2TCARB DR2TSUGR DR2TTFAT DR2TCHOL BMXBMI;
+run;
+
+
+proc freq data=learn.merge_clean;
+  tables RIAGENDR INDFMPIR;
+run;
