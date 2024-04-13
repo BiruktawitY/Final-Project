@@ -1,0 +1,11 @@
+data learn.merge;
+merge learn.P_bmx(keep=seqn bmxbmi)
+      learn.p_dr2tot(keep=seqn dr2tprot dr2tcarb dr2tsugr dr2ttfat dr2tchol)
+      learn.p_demo(keep=riagendr seqn ridageyr indfmpir);
+by seqn;
+run;
+
+libname learn '/home/u63735964/my_programs';
+data learn.merge_c;
+set learn.merge;
+if cmiss(of _all_) ~= 0 then delete;
